@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Lista de Productos" blockClass="pc-component">
+      <div class="col-md-12 col-xl-8">
+        <h5 class="mb-3">
+          <a routerLink="/nuevodestino" class="btn btn-outline-dark">Nuevo destino</a>
+        </h5>
+        <div class="card tbl-card">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>nombre</th>
+                  <th>Pais</th>
+                  <th>Ciudad</th>
+                  <th>Descripcion</th>
+                  <th>Costo</th>
+                  <th class="text-end">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let destino of listadestino; let i = index; trackBy: trackByFn">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ destino.nombre }}</td>
+                  <td>{{ destino.pais }}</td>
+                  <td>{{ destino.ciudad }}</td>
+                  <td>{{ destino.descripcion}}</td>
+                  <td>{{ destino.costo }}</td>
+                  <td>
+                    <button type="button" class="btn btn-outline-success" [routerLink]="['/editardestino', destino.idDestino]">
+                      Editar
+                    </button>
+                    <button (click)="eliminar(destino.idDestino)" type="button" class="btn btn-outline-danger">Eliminar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

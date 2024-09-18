@@ -1,0 +1,179 @@
+<div class="card my-5">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <h3 class="mb-0">
+        {{ titulo }}
+        <!--Interpolacion
+          sirve para enviar datos desde el .ts hacia el html
+          -->
+      </h3>
+    </div>
+    <div class="row">
+      <form [formGroup]="frm_reserva" novalidate (ngSubmit)="grabar()">
+        <div class="container mt-4" id="impresion">
+          <!-- Encabezado de la Factura -->
+          <div class="row">
+            <div class="col-6">
+              <h2>RUTAS DEL ECUADOR</h2>
+              <p>RUC: 1234567890</p>
+              <p>Dirección: Calle Esperanza, Quito, Ecuador</p>
+              <p>Teléfono: +593 999 999 999</p>
+              <p>Email: info@tumail.com</p>
+            </div>
+            <div class="col-6 text-end">
+              <h4>RESERVA</h4>
+              <p>No. 001-001-000000001</p>
+              <p>
+                <label class="form-label" for="password">Fecha de Reserva</label>
+                <input type="date" class="form-control" formControlName="fecha" />
+                @if (frm_reserva.get('fecha').invalid && frm_reserva.get('fecha').touched) {
+                  <div>
+                    @if (frm_reserva.get('Fecha').hasError('required')) {
+                      <small style="color: red">La fecha es requerida</small>
+                    }
+                  </div>
+                }
+              </p>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Información del Cliente -->
+          <div class="row">
+            <div class="col-12">
+              <h5>Datos del Turista</h5>
+              <select class="form-control" (change)="cambio($event)">
+                <option>Seleccione una opcion</option>
+                @for (turista of listaturista; track $index) {
+                  <option value="{{ turista.idTurista }}">{{ turista.nombre }}</option>
+                }
+              </select>
+              <p>
+                <strong>Nombre:</strong>
+                Juan Pérez
+              </p>
+              <p>
+                <strong>Cédula/RUC:</strong>
+                1234567890
+              </p>
+              <p>
+                <strong>Dirección:</strong>
+                Calle Ejemplo 456, Guayaquil, Ecuador
+              </p>
+              <p>
+                <strong>Teléfono:</strong>
+                +593 987 654 321
+              </p>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Detalle de la Factura -->
+          <div class="row">
+            <div class="col-12">
+              <button
+                type="button"
+                class="btn btn-primary noimprimir"
+                data-bs-toggle="modal"
+                data-bs-target="#addDestinoModal"
+                (click)="destinoLista($event)"
+              >
+                Agregar Destino
+              </button>
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Destino</th>
+                    <th>Fecha</th>
+                    <th>Forma de pago</th>
+                    <th>comentario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of destinoelejido; track $index) {
+                    <tr>
+                      <td>{{ item.nombre }}</td>
+                      <td>{{ item.fecha }}</td>
+                      <td>{{ item.forma_pago }}</td>
+                      <td>{{ item.comentario }}</td>
+                    </tr>
+                  }
+                </tbody>
+                
+              </table>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Información Adicional -->
+          <div class="row">
+            <div class="col-12">
+              <p>
+                <strong>Forma de pago:</strong>
+                Transferencia Bancaria
+              </p>
+              <p>
+                <strong>Cuenta Bancaria:</strong>
+                Banco Pichincha, Cta: 123456789
+              </p>
+              <p>
+                <strong>Nota:</strong>
+                Gracias por su compra.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary">Grabar Reserva</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addDestinoModal" tabindex="-1" aria-labelledby="addDestinoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDestinoModalLabel">Agregar Destino</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para agregar producto " -->
+        <form #productForm="ngForm" (ngSubmit)="cargaModal(destinoForm)">
+          <div class="mb-3">
+            <label for="name" class="form-label">Destino</label>
+            <input type="text" class="form-control" id="name" name="name" ngModel required />
+          </div>
+          <div class="mb-3">
+            <label for="fecha" class="form-label">fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fecha" ngModel required />
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!destinoForm.form.valid">Agregar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+  IMPORTAR => FORMSMODULE  APP.MODULE.TS ||  NUEVOPROVEEDOR.COMPONENT.TS
+  
+  
+  
+  
+  
+  INTRPOLACION => DESDE EL TS AL HTML
+  {{ }} 
+  EVENTOS => EJECUTAR FUNCIONES EN EL TS
+  ()
+  DATA BINDING => DESDE EL HTML AL TS
+  []
+  TWO WAY BIDING => ENVIADO DE DATOS DESDE EL HTML AL TS Y DESDE EL TS AL HTML
+  [()]
+  -->

@@ -34,7 +34,7 @@ const routes: Routes = [
         path: 'sample-page',
         loadComponent: () => import('./demo/other/sample-page/sample-page.component')
       },
-      {
+      /*{
         path: 'proveedores',
         loadComponent: () => import('./proveedores/proveedores.component').then((m) => m.ProveedoresComponent),
         canActivate: [usuariosGuardGuard]
@@ -48,35 +48,36 @@ const routes: Routes = [
         path: 'editarproveedor/:id',
         loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent),
         canActivate: [usuariosGuardGuard]
-      },
+      },*/
       {
-        path: 'clientes',
-        loadComponent: () => import('./clientes/clientes.component').then((m) => m.ClientesComponent),
+        path: 'turista',
+        loadComponent: () => import('./turista/turista.component').then((m) => m.TuristaComponent),
         canActivate: [usuariosGuardGuard]
       },
       {
-        path: 'nuevocliente',
-        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent),
+        path: 'nuevoturista',
+        loadComponent: () => import('./turista/nuevoturista/nuevoturista.component').then((m) => m.NuevoturistaComponent),
         canActivate: [usuariosGuardGuard]
       },
       {
-        path: 'editarcliente/:idCliente',
-        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent),
+        path: 'editarturista/:idTurista',
+        loadComponent: () => import('./turista/nuevoturista/nuevoturista.component').then((m) => m.NuevoturistaComponent),
         canActivate: [usuariosGuardGuard]
       },
       {
-        path: 'editarfactura/:id',
-        loadComponent: () => import('./facturas/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent)
+        path: 'editarreserva/:id',
+        loadComponent: () => import('./reserva/nuevoreserva/nuevareserva.component').then((m) => m.NuevoreservaComponent)
       },
       {
-        path: 'nuevafactura',
-        loadComponent: () => import('./facturas/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent),
+        path: 'nuevoreserva',
+        loadComponent: () => import('./reserva/nuevoreserva/nuevoreserva.component').then((m) => m.NuevoreservaComponent),
         canActivate: [usuariosGuardGuard]
       },
       {
-        path: 'facturas',
-        loadComponent: () => import('./facturas/facturas.component').then((m) => m.FacturasComponent)
+        path: 'reserva',
+        loadComponent: () => import('./reserva/reserva.component').then((m) => m.reservaComponent)
       },
+      /*
       {
         path: 'unidadmedida',
         loadComponent: () => import('./unidadmedida/unidadmedida.component').then((m) => m.UnidadmedidaComponent),
@@ -93,20 +94,20 @@ const routes: Routes = [
         loadComponent: () =>
           import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
         canActivate: [usuariosGuardGuard]
-      },
+      },*/
       {
-        path: 'productos',
-        loadComponent: () => import('./productos/productos.component').then((m) => m.ProductosComponent),
+        path: 'destino',
+        loadComponent: () => import('./destino/destino.component').then((m) => m.destinoComponent),
         canActivate: [usuariosGuardGuard]
       },
       {
-        path: 'nuevoproducto',
-        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
+        path: 'nuevodestino',
+        loadComponent: () => import('./destino/nuevodestino/nuevodestino.component').then((m) => m.NuevodestinoComponent),
         canActivate: [usuariosGuardGuard]
       },
       {
-        path: 'editarproducto/:id',
-        loadComponent: () => import('./productos/nuevoproducto/nuevoproducto.component').then((m) => m.NuevoproductoComponent),
+        path: 'editardestino/:id',
+        loadComponent: () => import('./destino/nuevodestino/nuevodestino.component').then((m) => m.NuevodestinoComponent),
         canActivate: [usuariosGuardGuard]
       }
     ]
